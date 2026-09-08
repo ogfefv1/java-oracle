@@ -1,5 +1,7 @@
 package step.learning.OOPDemo;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +27,30 @@ public class OOPDemo {
                     .log(System.Logger.Level.ERROR, ex.getMessage());
         }
         for (Literature lit : library) {
-            System.out.println( lit.card() );
+            boolean isFound = false;
+            Method[] methods = lit.getClass().getDeclaredMethods();
+            for (Method method : methods) {
+                if (method.isAnnotationPresent(Card.class)) {
+                    try {
+                        Card card = method.getAnnotation( Card.class );
+
+                        System.out.printf(
+                                "%s %s%n",
+                                card.value(),
+                                method.invoke(lit)
+                        );
+                        isFound = true;
+                    }
+                    catch (IllegalAccessException | InvocationTargetException ex) {
+                        System.getLogger(OOPDemo.class.getName())
+                                .log(System.Logger.Level.ERROR, ex.getMessage());
+                    }
+
+                }
+            }
+            if ( ! isFound ) {
+                System.out.println( lit.card() );
+            }
         }
         printPeriodic();
     }
