@@ -55,6 +55,10 @@ public class AsyncDemo implements Runnable {
                 resultString += ch;
                 System.out.printf("thread #%d added '%c' to illia string: %s, len %d%n",
                         threadId, ch, resultString, resultString.length());
+                if (resultString.length() == 10) {
+                    resultString += ".jpg";
+                    System.out.println("Final file name: " + resultString);
+                }
             }
         }
     }
