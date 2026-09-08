@@ -27,4 +27,13 @@ public class Book extends Literature {
                 this.getAuthor()
         );
     }
+
+    @Card("Other card of Book")
+    public String otherCard() {
+        return String.format(
+                " '%s' by %s",
+                super.getTitle(),
+                this.getAuthor()
+        );
+    }
 }
