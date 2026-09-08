@@ -58,11 +58,12 @@ public class OOPDemo {
     private void printPeriodic() {
         System.out.println("--- PERIODIC ---");
         for (Literature lit : library) {
-            if (lit instanceof IPeriodic) {
+            if (lit.getClass().isAnnotationPresent(Periodic.class)) {
+                Periodic periodic = lit.getClass().getAnnotation(Periodic.class);
                 System.out.printf(
                         "%s  %s%n",
                         lit.card(),
-                        ((IPeriodic) lit).getPeriod()
+                        periodic.value()
                 );
             }
         }

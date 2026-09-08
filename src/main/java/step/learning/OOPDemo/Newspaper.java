@@ -3,7 +3,8 @@ package step.learning.OOPDemo;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Newspaper extends Literature implements IPeriodic {
+@Periodic("One per day")
+public class Newspaper extends Literature {
     public static final SimpleDateFormat dateFormat =
             new SimpleDateFormat("dd.MM.yyyy");
     private Date date;
@@ -23,11 +24,7 @@ public class Newspaper extends Literature implements IPeriodic {
     public final void setDate(Date date) {
         this.date = date;
     }
-
-    @Override
-    public String getPeriod() {
-        return "One per day";
-    }
+    
 
     @Override
     public String card() {

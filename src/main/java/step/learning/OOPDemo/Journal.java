@@ -1,6 +1,7 @@
 package step.learning.OOPDemo;
 
-public class Journal extends Literature implements IPeriodic {
+@Periodic("One per month")
+public class Journal extends Literature {
     private int number;
 
     public Journal() {
@@ -17,11 +18,6 @@ public class Journal extends Literature implements IPeriodic {
 
     public final void setNumber(int number) {
         this.number = number;
-    }
-
-    @Override
-    public String getPeriod() {
-        return "One per month";
     }
 
 
