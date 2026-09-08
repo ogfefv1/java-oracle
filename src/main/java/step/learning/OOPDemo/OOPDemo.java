@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OOPDemo {
+    private final List<Literature> library = new ArrayList<>();
     public void run() {
-        List<Literature> library = new ArrayList<>();
         library.add(new Book("The Art of Programming", "D. Knuth"));
         library.add(new Book("Jokes for Long-Haul Truckers", "A. Diesel"));
         library.add(new Book("101 Ways to Cook Instant Noodles", "M. Ramen"));
@@ -27,5 +27,20 @@ public class OOPDemo {
         for (Literature lit : library) {
             System.out.println( lit.card() );
         }
+        printPeriodic();
+    }
+
+    private void printPeriodic() {
+        System.out.println("--- PERIODIC ---");
+        for (Literature lit : library) {
+            if (lit instanceof IPeriodic) {
+                System.out.printf(
+                        "%s  %s%n",
+                        lit.card(),
+                        ((IPeriodic) lit).getPeriod()
+                );
+            }
+        }
+        System.out.println("--- END PERIODIC ---");
     }
 }

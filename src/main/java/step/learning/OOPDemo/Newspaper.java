@@ -3,7 +3,7 @@ package step.learning.OOPDemo;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Newspaper extends Literature {
+public class Newspaper extends Literature implements IPeriodic {
     public static final SimpleDateFormat dateFormat =
             new SimpleDateFormat("dd.MM.yyyy");
     private Date date;
@@ -20,16 +20,21 @@ public class Newspaper extends Literature {
         return date;
     }
 
-    public void setDate(Date date) {
+    public final void setDate(Date date) {
         this.date = date;
+    }
+
+    @Override
+    public String getPeriod() {
+        return "One per day";
     }
 
     @Override
     public String card() {
         return String.format(
-                "Newspaper '%s' from %s",
+                "Newspaper '%s' From %s",
                 super.getTitle(),
-                dateFormat.format(this.getDate())
+                Newspaper.dateFormat.format( this.getDate() )
         );
     }
 }
